@@ -1,0 +1,1125 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyPeAmD8siORV3FNVghFnzG6",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/heokwon/Algorithm_Study/blob/main/Programmers/Programmer's_Lv2_(1).ipynb%20%20\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "## **최댓값과 최솟값**\n",
+        "문자열 s에는 공백으로 구분된 숫자들이 저장되어 있습니다. str에 나타나는 숫자 중 최소값과 최대값을 찾아 이를 \"(최소값) (최대값)\"형태의 문자열을 반환하는 함수,solution을 완성하세요. 예를들어 s가 \"1 2 3 4\"라면 \"1 4\"를 리턴하고, \"-1 -2 -3 -4\"라면 \"-4 -1\"을 리턴하면 됩니다.\n",
+        "* 제한조건\n",
+        "  + s에는 둘 이상의 정수가 공백으로 구분되어 있습니다."
+      ],
+      "metadata": {
+        "id": "Dnv9BlpRpcd8"
+      }
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "gG4bTDXypWle",
+        "outputId": "3ee69689-a9c2-47c8-c2e6-1d1e18c8f568"
+      },
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "[-1, -2, -3, -4]"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 28
+        }
+      ],
+      "source": [
+        "s = \"-1 -2 -3 -4\"\n",
+        "s = list(map(int,s.split()))\n",
+        "s"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "s = \"-1 -2 -3 -4\"\n",
+        "def solution(s):\n",
+        "    s = list(map(int,s.split()))\n",
+        "    return ' '.join([str(min(s)),str(max(s))])\n",
+        "solution(s)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 35
+        },
+        "id": "M31ioYbtqLRY",
+        "outputId": "69d9f7d3-3792-46cd-9422-267ece80a926"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "'-4 -1'"
+            ],
+            "application/vnd.google.colaboratory.intrinsic+json": {
+              "type": "string"
+            }
+          },
+          "metadata": {},
+          "execution_count": 29
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "## **JadenCase 문자열 만들기**\n",
+        "JadenCase란 모든 단어의 첫 문자가 대문자이고, 그 외의 알파벳은 소문자인 문자열입니다. 단, 첫 문자가 알파벳이 아닐 때에는 이어지는 알파벳은 소문자로 쓰면 됩니다. (첫 번째 입출력 예 참고)문자열 s가 주어졌을 떄, s를 JadenCase로 바꾼 문자열을 리턴하는 함수, solution을 완성해주세요.\n",
+        "* 제한조건\n",
+        "  + s는 길이 1 이상 200 이하인 문자열입니다.\n",
+        "  + s는 알파벳과 숫자, 공백문자(\"\")로 이루어져 있습니다.\n",
+        "    - 숫자는 단어의 첫 문자로만 나옵니다.\n",
+        "    - 숫자로만 이루어진 단어는 없습니다.\n",
+        "    - 공백문자가 연속해서 나올 수 있습니다.\n",
+        "\n",
+        "입출력 예\n",
+        "\n",
+        "|s|return|\n",
+        "|-|------|\n",
+        "|\"3people unFollowed me\"|\"3people Unfollowed Me\"|\n",
+        "|\"for the last week\"|\"For The Last Week\"|"
+      ],
+      "metadata": {
+        "id": "_95Tte8DsHuW"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "s = \"for the last week\"\n",
+        "s = s.split()\n",
+        "answer = [i.capitalize() for i in s]\n",
+        "answer"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "ZuWqsIu8rym3",
+        "outputId": "abaa677d-7fec-4524-a1f2-b60464c6b497"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "['For', 'The', 'Last', 'Week']"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 62
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "## 연속된 공백문자가 있을 경우, 이 방법으로는 해결 불가능\n",
+        "s = \"for the last week\"\n",
+        "def solution(s):\n",
+        "    return ' '.join([i.capitalize() for i in s.split()])\n",
+        "solution(s)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 35
+        },
+        "id": "U-mJHkB0uatP",
+        "outputId": "095ae4ac-6879-45f7-992c-831f5b97630a"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "'For The Last Week'"
+            ],
+            "application/vnd.google.colaboratory.intrinsic+json": {
+              "type": "string"
+            }
+          },
+          "metadata": {},
+          "execution_count": 64
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "s = \"for the last week\"\n",
+        "s = s.split(' ')\n",
+        "for i in range(len(s)):\n",
+        "    s[i] = s[i].capitalize()\n",
+        "s"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "0pg8_VoIwEXp",
+        "outputId": "0e51a41a-287a-4705-8103-1a55ca2ce42d"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "['For', 'The', 'Last', 'Week']"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 65
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "## 정답\n",
+        "s = \"for the last week\"\n",
+        "def solution2(s):\n",
+        "    s = s.split(' ')\n",
+        "    for i in range(len(s)):\n",
+        "        s[i] = s[i].capitalize()\n",
+        "    return ' '.join(s)\n",
+        "solution2(s)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 35
+        },
+        "id": "R1ib6rlpxnq5",
+        "outputId": "d4d3f7f7-9bb7-486d-ce56-9f24b0909440"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "'For The Last Week'"
+            ],
+            "application/vnd.google.colaboratory.intrinsic+json": {
+              "type": "string"
+            }
+          },
+          "metadata": {},
+          "execution_count": 66
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "## **최솟값 만들기**\n",
+        "길이가 같은 배열 A,B 두개가 있습니다. 각 배열은 자연수로 이루어져 있습니다. 배열 A,B에서 각각 한 개의 숫자를 뽑아 두 수를 곱합니다. 이러한 과정을 배열의 길이만큼 반복하며, 두 수를 곱한 값을 누적하여 더합니다. 이때 최종적으로 누적된 값이 최소가 되도록 만드는 것이 목표입니다.(단, 각 배열에서 k번째 숫자를 뽑았다면 다음에 k번째 숫자는 다시 뽑을 수 없습니다.)\n",
+        "\n",
+        "예를 들어 A = [1, 4, 2] , B = [5, 4, 4] 라면\n",
+        "* A에서 첫번째 숫자인 1, B에서 첫번째 숫자인 5를 뽑아 곱하여 더합니다. (누적된 값 : 0 + 5(1x5) = 5)\n",
+        "* A에서 두번째 숫자인 4, B에서 세번째 숫자인 4를 뽑아 곱하여 더합니다. (누적된 값 : 5 + 16(4x4) = 21)\n",
+        "* A에서 세번째 숫자인 2, B에서 두번째 숫자인 4를 뽑아 곱하여 더합니다. (누적된 값 : 21 + 8(2x4) = 29)\n",
+        "\n",
+        "즉, 이 경우가 최소가 되므로 29를 return 합니다.\n",
+        "\n",
+        "배열 A, B가 주어질 때 최종적으로 누적된 최솟값을 return 하는 solution 함수를 완성해 주세요.\n",
+        "* 제한사항\n",
+        "  + 배열 A, B의 크기 : 1,000 이하의 자연수\n",
+        "  + 배열 A, B의 원소의 크기 : 1,000 이하의 자연수"
+      ],
+      "metadata": {
+        "id": "1Bvyfi8vy972"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "A = [1, 4, 2]\n",
+        "B = [5, 4, 4]\n",
+        "answer = 0\n",
+        "for i in range(len(A)):\n",
+        "    a = min(A) * max(B)\n",
+        "    answer += a\n",
+        "    A.remove(min(A))\n",
+        "    B.remove(max(B))\n",
+        "answer "
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "mO5U7w1Fyr3T",
+        "outputId": "f0cd6c50-b803-40e8-f577-42f090cc53a9"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "29"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 71
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "## 정확성테스트는 모두 통과\n",
+        "## 효율성 테스트에서 탈락\n",
+        "## 리스트에서 min, max를 찾는데 시간이 걸림\n",
+        "A = [1, 4, 2]\n",
+        "B = [5, 4, 4]\n",
+        "def solution(A,B):\n",
+        "    answer = 0\n",
+        "    for i in range(len(A)):\n",
+        "        a = min(A) * max(B)\n",
+        "        answer += a\n",
+        "        A.remove(min(A))\n",
+        "        B.remove(max(B))\n",
+        "    return answer\n",
+        "solution(A,B)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "VGXZo5NO3cS5",
+        "outputId": "2c3b3304-96e7-4361-831c-3b9c19790984"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "29"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 72
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "## sort로 접근\n",
+        "## A는 내림차순, B는 오름차순으로\n",
+        "## 그 후 같은 인덱스끼리 연산\n",
+        "A = [1, 4, 2]\n",
+        "B = [5, 4, 4]\n",
+        "answer = 0\n",
+        "A.sort(reverse = True)\n",
+        "B.sort()\n",
+        "for i in range(len(A)):\n",
+        "    answer += A[i]*B[i]\n",
+        "answer"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "0-7BoHMY3taX",
+        "outputId": "9c53fb0f-eaa5-4175-c3ff-ea6ea6814bed"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "29"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 73
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "## solution과 마찬가지로 정확성에선 통과\n",
+        "## 앞의 해답보단 빨라졌지만, 효율성에서 탈락\n",
+        "def solution2(A,B):\n",
+        "    answer = 0\n",
+        "    for i in range(len(A)):\n",
+        "        answer += sorted(A,reverse=True)[i] * sorted(B)[i]\n",
+        "    return answer\n",
+        "# solution2(A,B)\n",
+        "\n",
+        "## solution2에서 zip함수를 추가해봄\n",
+        "## 정확성, 효율성 둘 다 통과\n",
+        "def solution3(A,B):\n",
+        "    return sum([i*j for i,j in zip(sorted(A,reverse=True),sorted(B))])\n",
+        "solution3(A,B)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "csLm7Rqp4kSH",
+        "outputId": "ce526e11-9cc5-4f4d-ee55-ee4ce1099e23"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "29"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 78
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "## **올바른 괄호**\n",
+        "괄호가 바르게 짝지어졌다는 것은 '('문자로 열렸으면 반드시 짝지어서 ')'문자로 닫혀야 한다는 뜻 입니다. 예를 들어\n",
+        "* \"()()\" 또는 \"(())()\" 는 올바른 괄호입니다.\n",
+        "* \")()(\" 또는 \"(()(\" 는 올바르지 않은 괄호입니다.\n",
+        "\n",
+        "'(' 또는 ')' 로만 이루어진 문자열 s가 주어졌을 때, 문자열 s가 올바른 괄호이면 true를 return 하고, 올바르지 않은 괄호이면 false를 return 하는 solution 함수를 완성해 주세요.\n",
+        "* 제한사항\n",
+        "  + 문자열 s의 길이 : 100,000 이하의 자연수\n",
+        "  + 문자열 s는 '(' 또는 ')' 로만 이루어져 있습니다.\n",
+        "\n",
+        "입출력 예\n",
+        "\n",
+        "|s|answer|\n",
+        "|-|------|\n",
+        "|\"()()\"|true|\n",
+        "|\"(())()\"|true|\n",
+        "|\")()(\"|false|\n",
+        "|\"(()(\"|false|"
+      ],
+      "metadata": {
+        "id": "XiSkeWyn621g"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "## 정확성 57.9\n",
+        "## 효율성 15.2\n",
+        "## 합계 73.2 / 100\n",
+        "s = \")()(\"\n",
+        "def solution(s):\n",
+        "    if s[0] == '(' and s[-1] == ')':\n",
+        "        return True\n",
+        "    else:\n",
+        "        return False\n",
+        "solution(s)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "fJyOZNQR5KH7",
+        "outputId": "422043eb-9cc3-4f8e-e4a8-60419775f19a"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "False"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 91
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "## 정확성 61.8\n",
+        "## 효율성 30.5\n",
+        "## 합계 92.3 / 100\n",
+        "def solution2(s):\n",
+        "    if s.count('(') == s.count(')'):\n",
+        "        if s[0] == '(' and s[-1] == ')':\n",
+        "            return True\n",
+        "        else:\n",
+        "            return False\n",
+        "    else:\n",
+        "        return False\n",
+        "solution2(s)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "gz5z3MrR8z3j",
+        "outputId": "0c04c85c-510f-4b7a-d9bb-3e13275f1670"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "False"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 92
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "## 스택으로 해결해야 함\n",
+        "def solution3(s):\n",
+        "    stack = 0\n",
+        "    for i in s:\n",
+        "        if stack < 0:\n",
+        "            break\n",
+        "        stack = stack + 1 if i == '(' else stack - 1 if i ==')' else stack\n",
+        "    return stack == 0\n",
+        "solution3(s)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "DCqjh6mf9XeA",
+        "outputId": "036b59a0-d09d-459d-d381-1a592dafdbdc"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "False"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 94
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "## **5. 이진 변환 반복하기**\n",
+        "0과 1로 이루어진 어떤 문자열 x에 대한 이진 변환을 다음과 같이 정의합니다.\n",
+        "1. x의 모든 0을 제거합니다.\n",
+        "2. x의 길이를 c라고 하면, x를 \"c를 2진법으로 표현한 문자열\"로 바꿉니다.\n",
+        "\n",
+        "예를 들어, x = \"0111010\"이라면, x에 이진 변환을 가하면 x = \"0111010\" -> \"1111\" -> \"100\" 이 됩니다.\n",
+        "\n",
+        "0과 1로 이루어진 문자열 s가 매개변수로 주어집니다. s가 \"1\"이 될 때까지 계속해서 s에 이진 변환을 가했을 때, 이진 변환의 횟수와 변환 과정에서 제거된 모든 0의 개수를 각각 배열에 담아 return 하도록 solution 함수를 완성해주세요.\n",
+        "* 제한사항\n",
+        "  + s의 길이는 1이상 150,000 이하입니다.\n",
+        "  + s에는 '1'이 최소 하나 이상 포함되어 있습니다."
+      ],
+      "metadata": {
+        "id": "thutsRZCBCac"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "s = \"1111111\"\n",
+        "answer = [0,0]\n",
+        "bin(s.count('1'))[2:]"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 35
+        },
+        "id": "i36qxhGm-ty9",
+        "outputId": "7a2788b3-98d2-446f-cf18-4315d405a8c2"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "'111'"
+            ],
+            "application/vnd.google.colaboratory.intrinsic+json": {
+              "type": "string"
+            }
+          },
+          "metadata": {},
+          "execution_count": 113
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "answer = [0,0]\n",
+        "while True :\n",
+        "    if s == '1':\n",
+        "        break\n",
+        "    answer[0] += 1\n",
+        "    answer[1] += s.count('0')\n",
+        "    s = bin(s.count('1'))[2:]\n",
+        "answer"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "XZ7LVdyYCYwj",
+        "outputId": "7ae24158-0260-431a-d7b5-4714a585215b"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "[4, 1]"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 114
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "s = \"1111111\"\n",
+        "def solution(s):\n",
+        "    answer = [0,0]\n",
+        "    while s != '1':\n",
+        "        answer[0] += 1\n",
+        "        answer[1] += s.count('0')\n",
+        "        s = bin(s.count('1'))[2:]\n",
+        "    return answer\n",
+        "solution(s)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "2jNAniMUEM3K",
+        "outputId": "c9d0aa11-08ba-4853-8a5d-62c673870ea6"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "[4, 1]"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 120
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "## **숫자의 표현**\n",
+        "Finn은 요즘 수학공부에 빠져 있습니다. 수학 공부를 하던 Finn은 자연수 n을 연속한 자연수들로 표현 하는 방법이 여러개라는 사실을 알게 되었습니다. 예를 들어 15는 다음과 같이 4 가지로 표현할 수 있습니다.\n",
+        "* 1 + 2 + 3 + 4 + 5 = 15\n",
+        "* 4 + 5 + 6 = 15\n",
+        "* 7 + 8 = 15\n",
+        "* 15 = 15\n",
+        "\n",
+        "자연수 n이 매개변수로 주어질 때, 연속된 자연수들로 n을 표현하는 방법의 수를 return하는 solution을 완성해주세요.\n",
+        "* 제한사항\n",
+        "  + n은 10,000 이하의 자연수 입니다."
+      ],
+      "metadata": {
+        "id": "Enojy4GzY-sE"
+      }
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "\n",
+        "\n",
+        "```\n",
+        "# n 이하인 숫자 a부터 k개의 연속된 숫자의 합이 n이라고 가정한다면\n",
+        "\"\"\"\"\n",
+        "a + (a+1) + (a+2) + ... + (a+k-1) = k(2a+k-1)/2 = n\n",
+        "a <= n\n",
+        "k < n\n",
+        "a,k : 자연수\n",
+        "\"\"\"\"\n",
+        "# 위의 식을 정리하면 a = n/k + (1-k)/2가 된다.\n",
+        "a가 자연수라는 조건이 성립하기 위해서는\n",
+        "\"\"\"\"\n",
+        "n/k 가 자연수이려면 : k는 n의 약수여야 한다.\n",
+        "(1-k)/2 가 정수가 되려면 : 1-k 가 짝수여야 하므로 k는 홀수여야 한다.\n",
+        "k < n\n",
+        "\"\"\"\"\n",
+        "위 조건을 만족해야 한다.\n",
+        "\n",
+        "### 따라서 위의 조건을 만족하는 k의 개수만큼 연속된 자연수의 합이 n이 될 수 있기 때문에, n의 약수이면서 홀수인 k를 찾으면 된다.\n",
+        "```\n",
+        "\n"
+      ],
+      "metadata": {
+        "id": "MGQ6mf9JbJwq"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "n = 15\n",
+        "a = [i for i in range(1,n+1,2) if n % i is 0]\n",
+        "a"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "z2sdYsBEGLPs",
+        "outputId": "b441f779-0c3d-4e5b-9160-33a73b934ed0"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "[1, 3, 5, 15]"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 121
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "def solution(n):\n",
+        "    return len([i for i in range(1,n+1,2) if n % i is 0])\n",
+        "solution(n)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "Q4vAq7qVa42G",
+        "outputId": "6839f3db-e99c-43d7-e69b-17cda20ff057"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "4"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 123
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "## **피보나치 수**\n",
+        "피보나치 수는 F(0) = 0, F(1) = 1 일 때, 1이상의 n에 대하여 F(n) = F(n-1) + F(n-2) 가 적용되는 수 입니다. 예를 들어\n",
+        "* F(2) = F(0) + F(1) = 0 + 1 = 1\n",
+        "* F(3) = F(1) + F(2) = 1 + 1 = 2\n",
+        "* F(4) = F(2) + F(3) = 1 + 2 = 3\n",
+        "* F(5) = F(3) + F(4) = 2 + 3 = 5\n",
+        "\n",
+        "와 같이 이어집니다.\n",
+        "\n",
+        "2 이상의 n이 입력되었을 때, n번째 피보나치 수를 1234567으로 나눈 나머지를 리턴하는 함수, solution을 완성해 주세요.\n",
+        "* 제한사항\n",
+        "  + n은 2이상 100,000 이하인 자연수입니다."
+      ],
+      "metadata": {
+        "id": "wmG-HbIccTq1"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "n = 3\n",
+        "answer = [0,1]\n",
+        "for i in range(2,n+1):\n",
+        "    answer.append((answer[i-1] + answer[i-2]) % 1234567)\n",
+        "answer[-1]"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "J1tOiwv8d8kh",
+        "outputId": "c304971a-7c3d-4988-daf4-920acece1e0d"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "2"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 1
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "def solution(n):\n",
+        "    answer = [0,1]\n",
+        "    for i in range(2,n+1):\n",
+        "        answer.append((answer[i-1]+answer[i-2])%1234567)\n",
+        "    return answer[-1]\n",
+        "solution(n)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "JApFgBmeexoF",
+        "outputId": "c64bc8b4-41e3-4065-ef6c-ad4e7e66136d"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "2"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 3
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "## 다른사람 문제풀이\n",
+        "def fibonacci(num):\n",
+        "    a,b = 0,1\n",
+        "    for i in range(num):\n",
+        "        a,b = b,a+b\n",
+        "    return a\n",
+        "fibonacci(3)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "QqVHoRrDfqtE",
+        "outputId": "3bb6608e-f16c-4c7d-b19a-f351190f3d2d"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "2"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 4
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "## **다음 큰 숫자**\n",
+        "자연수 n이 주어졌을 때, n의 다음 큰 숫자는 다음과 같이 정의 합니다.\n",
+        "* 조건 1. n의 다음 큰 숫자는 n보다 큰 자연수 입니다.\n",
+        "* 조건 2. n의 다음 큰 숫자와 n은 2진수로 변환했을 때 1의 갯수가 같습니다.\n",
+        "* 조건 3. n의 다음 큰 숫자는 조건 1,2를 만족하는 수 중 가장 작은 수 입니다.\n",
+        "\n",
+        "예를 들어서 78(1001110)의 다음 큰 숫자는 83(1010011)입니다.\n",
+        "\n",
+        "자연수 n이 매개변수로 주어질 때, n의 다음 큰 숫자를 return하는 solution 함수를 완성해주세요.\n",
+        "* 제한 사항\n",
+        "  + n은 1,000,000 이하의 자연수 입니다."
+      ],
+      "metadata": {
+        "id": "sSAazOxjgzxw"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "n = 78\n",
+        "def solution(n):\n",
+        "    bin_n = bin(n).count('1')\n",
+        "    for i in range(n+1, 1000001):\n",
+        "        if bin(i).count('1') == bin_n:\n",
+        "            return i\n",
+        "solution(n)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "Y7wl0Bi7goMG",
+        "outputId": "c9b9bc8a-d494-4430-d7d2-979c26e17cba"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "83"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 2
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "## **카펫**\n",
+        "Leo는 카페을 사러 갔다가 아래 그림과 같이 중앙에는 노란색으로 칠해져 있고 테두리 1줄은 갈색으로 칠해져 있는 격자 모양 카펫을 봤습니다.<br><br>\n",
+        "![image.png](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA0sAAAJ8CAIAAACgLq2AAAAO5ElEQVR4nO3cO2+edwGHYTt24hzsNIliKygFNVKxYKMVJ4l0qfIFYGPlezCwFJAiVZQdFlDHMlYMFERhALVEIoKEhiRAkzTng+tDbDdmqRITJFsoTh5x+7q2/6tn+A2P/N5+T6Nra2vnz59fWloaAQDg/9+RI0fG33///ZMnTw69BACArbF3797xubm5kZGRubm5xcXFofcAAPBEDh48uLCwML62tjYyMvLBBx+cPXt26EkAADyREydOTE9P7xh6BgAAW0zhAQDUKDwAgBqFBwBQo/AAAGoUHgBAjcIDAKgZ3/SKL8zs+cz+iWcwhe3myr37Z679x+9sf+OF/bvG/dfB1jt9Zf76/MrD49TE2Jc/OzXgHsJ+8/c7D9YeHV84tPvYod3DzSHr9sLKqcvzG1yweeF9cWbvy8/7U8jWe+/DuccK7/ix5yYnxobaQ9jVueX1hbd/99irLx4YcA9hvz1/98Hao8Q7dmi3m42n4fzNxY0Lz+slAAA1Cg8AoEbhAQDUKDwAgBqFBwBQo/AAAGoUHgBAjcIDAKhReAAANQoPAKBG4QEA1Cg8AIAahQcAUKPwAABqFB4AQI3CAwCoUXgAADUKDwCgRuEBANQoPACAGoUHAFCj8AAAahQeAECNwgMAqFF4AAA1Cg8AoEbhAQDUKDwAgBqFBwBQo/AAAGoUHgBAjcIDAKhReAAANQoPAKBG4QEA1Cg8AIAahQcAUKPwAABqFB4AQI3CAwCoUXgAADUKDwCgRuEBANQoPACAGoUHAFCj8AAAahQeAECNwgMAqFF4AAA1Cg8AoEbhAQDUKDwAgBqFBwBQo/AAAGoUHgBAjcIDAKhReAAANQoPAKBG4QEA1Cg8AIAahQcAUKPwAABqFB4AQI3CAwCoUXgAADUKDwCgRuEBANQoPACAGoUHAFCj8AAAahQeAECNwgMAqFF4AAA1Cg8AoEbhAQDUKDwAgBqFBwBQo/AAAGoUHgBAjcIDAKhReAAANQoPAKBG4QEA1Cg8AIAahQcAUKPwAABqFB4AQI3CAwCoUXgAADUKDwCgRuEBANQoPACAGoUHAFCj8AAAahQeAECNwgMAqFF4AAA1Cg8AoEbhAQDUKDwAgBqFBwBQo/AAAGoUHgBAjcIDAKhReAAANQoPAKBG4QEA1Cg8AIAahQcAUKPwAABqFB4AQI3CAwCoUXgAADUKDwCgRuEBANQoPACAGoUHAFCj8AAAahQeAECNwgMAqFF4AAA1Cg8AoEbhAQDUKDwAgBqFBwBQo/AAAGoUHgBAjcIDAKhReAAANQoPAKBG4QEA1Cg8AIAahQcAUKPwAABqFB4AQI3CAwCoUXgAADUKDwCgRuEBANQoPACAGoUHAFCj8AAAahQeAECNwgMAqFF4AAA1Cg8AoEbhAQDUKDwAgBqFBwBQo/AAAGoUHgBAjcIDAKhReAAANQoPAKBG4QEA1Cg8AIAahQcAUKPwAABqFB4AQI3CAwCoUXgAADUKDwCgRuEBANQoPACAGoUHAFCj8AAAahQeAECNwgMAqFF4AAA1Cg8AoEbhAQDUKDwAgBqFBwBQo/AAAGoUHgBAjcIDAKhReAAANQoPAKBG4QEA1Cg8AIAahQcAUKPwAABqFB4AQI3CAwCoUXgAADUKDwCgRuEBANQoPACAGoUHAFCj8AAAahQeAECNwgMAqFF4AAA1Cg8AoEbhAQDUKDwAgBqFBwBQo/AAAGoUHgBAzfimV1yfX7lwa+kZTGG7uTG/8tgj/7y9tGfX2CBjaJtf/mT98f7qA3/WeErW1tbWH28vrrrZeBqu3Fve+ILNC+/dC/fevXBvi/bARt48dX3oCWwLN+ZXf/KHj4ZewbZw6tLHpy59PPQKtiPv0gIA1Cg8AIAahQcAUKPwAABqNv+mxfFj+2en9z6DKWw3f7u+8NiXeH7+s+MHDuwaag9hr73259/9/tH3eGY/P/X6618ZcA9h3/zWr5eXHzw8funo5MtHJwfcQ9Xlu/ffPnt7gws2L7zpfTuPHdq9dZPgU7cWHv+1lK9/7fD0tJuNrXf48MT649TUzleOzww1hrYdO0bXHw/uGfccytPw2O/y/Dfv0gIA1Cg8AIAahQcAUKPwAABqFB4AQI3CAwCoUXgAADUKDwCgRuEBANQoPACAGoUHAFCj8AAAahQeAECNwgMAqFF4AAA1Cg8AoEbhAQDUKDwAgBqFBwBQo/AAAGoUHgBAjcIDAKhReAAANQoPAKBG4QEA1Cg8AIAahQcAUKPwAABqFB4AQI3CAwCoUXgAADUKDwCgRuEBANQoPACAGoUHAFCj8AAAahQeAECNwgMAqFF4AAA1Cg8AoEbhAQDUKDwAgBqFBwBQo/AAAGoUHgBAjcIDAKhReAAANQoPAKBG4QEA1Cg8AIAahQcAUKPwAABqFB4AQI3CAwCoUXgAADUKDwCgRuEBANQoPACAGoUHAFCj8AAAahQeAECNwgMAqFF4AAA1Cg8AoEbhAQDUKDwAgBqFBwBQo/AAAGoUHgBAjcIDAKhReAAANQoPAKBG4QEA1Cg8AIAahQcAUKPwAABqFB4AQI3CAwCoUXgAADUKDwCgRuEBANQoPACAGoUHAFCj8AAAahQeAECNwgMAqFF4AAA1Cg8AoEbhAQDUKDwAgBqFBwBQo/AAAGoUHgBAjcIDAKhReAAANQoPAKBG4QEA1Cg8AIAahQcAUKPwAABqFB4AQI3CAwCoUXgAADUKDwCgRuEBANQoPACAGoUHAFCj8AAAahQeAECNwgMAqFF4AAA1Cg8AoEbhAQDUKDwAgBqFBwBQo/AAAGoUHgBAjcIDAKhReAAANQoPAKBG4QEA1Cg8AIAahQcAUKPwAABqFB4AQI3CAwCoUXgAADUKDwCgRuEBANQoPACAGoUHAFCj8AAAahQeAECNwgMAqFF4AAA1Cg8AoEbhAQDUKDwAgBqFBwBQo/AAAGoUHgBAjcIDAKhReAAANQoPAKBG4QEA1Cg8AIAahQcAUKPwAABqFB4AQI3CAwCoUXgAADUKDwCgRuEBANQoPACAGoUHAFCj8AAAahQeAECNwgMAqFF4AAA1Cg8AoEbhAQDUKDwAgBqFBwBQo/AAAGoUHgBAjcIDAKhReAAANQoPAKBG4QEA1Cg8AIAahQcAUKPwAABqFB4AQI3CAwCoUXgAADUKDwCgRuEBANQoPACAGoUHAFCj8AAAahQeAECNwgMAqFF4AAA1Cg8AoEbhAQDUKDwAgBqFBwBQo/AAAGoUHgBAjcIDAKhReAAANQoPAKBG4QEA1Cg8AIAahQcAUKPwAABqFB4AQI3CAwCoUXgAADXjm17x12sLd5Y+eQZT2G6u3Lv/2CM/euPMvn2b35Pwvzpz9t764+Uri9//wemhxtC2uvpg/fHCraVfnbsz1BjCbi+sbHzB5s+mZ64tnrm2uEV7YCNv/PjM0BPYFq4oPJ6Vi7eWLt5aGnoF25F3aQEAahQeAECNwgMAqNn8c3iH941PTfjwO1tv7v7qjfnV9Y987sDE2I7RofYQdnVueWHl0effd42NHn1uYsA9hF28tbS27nhgz/jBPZ5D2XqLK598NLfRly02v+1eOfbcy89Pbd0k+NR7H8794vTN9Y98+6WZyYmxofYQ9uafrv3l6sLD4/Tkzu989ciAewj73i//sfrgUeO9dHTy1RcPDLiHqvM3F3/6x6sbXOBdWgCAGoUHAFCj8AAAahQeAECNwgMAqFF4AAA1Cg8AoEbhAQDUKDwAgBqFBwBQo/AAAGoUHgBAjcIDAKhReAAANQoPAKBG4QEA1Cg8AIAahQcAUKPwAABqFB4AQI3CAwCoUXgAADUKDwCgRuEBANQoPACAGoUHAFCj8AAAahQeAECNwgMAqFF4AAA1Cg8AoEbhAQDUKDwAgBqFBwBQo/AAAGoUHgBAjcIDAKhReAAANQoPAKBG4QEA1Cg8AIAahQcAUKPwAABqFB4AQI3CAwCoUXgAADUKDwCgRuEBANQoPACAGoUHAFCj8AAAahQeAECNwgMAqFF4AAA1Cg8AoEbhAQDUKDwAgBqFBwBQo/AAAGoUHgBAjcIDAKhReAAANQoPAKBG4QEA1Cg8AIAahQcAUKPwAABqFB4AQI3CAwCoUXgAADUKDwCgRuEBANQoPACAGoUHAFCj8AAAahQeAECNwgMAqFF4AAA1Cg8AoEbhAQDUKDwAgBqFBwBQo/AAAGoUHgBAjcIDAKhReAAANQoPAKBG4QEA1Cg8AIAahQcAUKPwAABqFB4AQI3CAwCoUXgAADUKDwCgRuEBANQoPACAGoUHAFCj8AAAahQeAECNwgMAqFF4AAA1Cg8AoEbhAQDUKDwAgBqFBwBQo/AAAGoUHgBAjcIDAKhReAAANQoPAKBG4QEA1Cg8AIAahQcAUKPwAABqFB4AQI3CAwCoUXgAADUKDwCgRuEBANQoPACAGoUHAFCj8AAAahQeAECNwgMAqFF4AAA1Cg8AoEbhAQDUKDwAgBqFBwBQo/AAAGoUHgBAjcIDAKhReAAANQoPAKBG4QEA1Cg8AIAahQcAUKPwAABqFB4AQI3CAwCoUXgAADUKDwCgRuEBANQoPACAGoUHAFCj8AAAahQeAECNwgMAqFF4AAA1Cg8AoEbhAQDUKDwAgBqFBwBQo/AAAGoUHgBAjcIDAKhReAAANQoPAKBG4QEA1Cg8AIAahQcAUKPwAABqFB4AQI3CAwCoUXgAADUKDwCgRuEBANQoPACAGoUHAFCj8AAAahQeAECNwgMAqFF4AAA1Cg8AoEbhAQDUKDwAgBqFBwBQo/AAAGoUHgBAjcIDAKhReAAANQoPAKBG4QEA1Cg8AIAahQcAUKPwAABqFB4AQI3CAwCoUXgAADUKDwCgRuEBANQoPACAGoUHAFCj8AAAahQeAECNwgMAqFF4AAA1Cg8AoEbhAQDUjG96xVunb751+uYzmAI/fOdfQ09gW7h0d/m7b18cegXbwjvn7rxz7s7QK9iOvIYHAFCj8AAAahQeAECNwgMAqFF4AAA1Cg8AoEbhAQDUjI+Ojo6MjExOTs7MzAw9BgCAJ7Jz586Rh794PDs7Ozs7O+geAAC2xr8BD48Wb6Oy/gEAAAAASUVORK5CYII=)<br><br>\n",
+        "Leo는 집으로 돌아와서 아까 본 카펫의 노란색과 갈색으로 색칠된 격자의 개수는 기억했지만, 전체 카펫의 크기는 기억하지 못했습니다.\n",
+        "\n",
+        "Leo가 본 카펫에서 갈색 격자의 수 brown, 노란색 격자의 수 yellow가 매개변수로 주어질 떄 카펫의 가로, 세로 크기를 순서대로 배열에 담아 return 하도록 solution 함수를 작성해주세요.\n",
+        "* 제한 사항\n",
+        "  + 갈색 격자의 수 brown은 8 이상 5,000 이하인 자연수입니다.\n",
+        "  + 노란색 격자의 수 yellow는 1 이상 2,000,000 이하인 자연수입니다.\n",
+        "  + 카펫의 가로 길이는 세로 길이와 같거나, 세로 길이보다 깁니다."
+      ],
+      "metadata": {
+        "id": "OJOs5atEk4VJ"
+      }
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "\n",
+        "\n",
+        "```\n",
+        "갈색 공간의 4개의 꼭짓점을 빼고 반으로 나누면, 노란색 구역의 가로+세로가 나오게 되며, for문을 돌면서 가로*세로 가 노란색이 될 때, 가로+2, 세로+2가 정답.\n",
+        "```\n",
+        "\n"
+      ],
+      "metadata": {
+        "id": "vqA0VO7rptv_"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "brown = 10\n",
+        "yellow = 2\n",
+        "def solution(brown, yellow):\n",
+        "    n = (brown - 4)//2\n",
+        "    for i in range(n):\n",
+        "        x,y = i,n-i\n",
+        "        if x*y == yellow:\n",
+        "            return [y+2,x+2]\n",
+        "\n",
+        "solution(brown, yellow)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "3TP8G5dDnNV4",
+        "outputId": "fcd8778e-2d98-4c45-d33f-990efaa8ff84"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "[4, 3]"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 18
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "\n",
+        "\n",
+        "```\n",
+        "근의 공식을 이용한 풀이\n",
+        "(다른사람 풀이)\n",
+        "```\n",
+        "\n"
+      ],
+      "metadata": {
+        "id": "wAm6e4nip_tI"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "def solution2(brown, yellow):  # 근의 공식 활용\n",
+        "    x = (brown + 4 + ((brown + 4) ** 2 - 16 * (brown + yellow)) ** 0.5) / 4\n",
+        "    y = (brown + yellow) / x\n",
+        "    return [x,y]\n",
+        "solution(brown, yellow)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "nLAIKOewocfV",
+        "outputId": "fa4fb74d-41e6-4969-e2cf-0957f5868507"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "[4, 3]"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 19
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "## **10. 짝지어 제거하기**\n",
+        "짝지어 제거하기는, 알파벳 소문자로 이루어진 문자열을 가지고 시작합니다. 먼저 문자열에서 같은 알파벳이 2개 붙어 있는 짝을 찾습니다. 그다음, 그 둘을 제거한 뒤, 앞뒤로 문자열을 이어 붙입니다. 이 과정을 반복해서 문자열을 모두 제거한다면 짝지어 제거하기가 종료됩니다. 문자열 S가 주어졌을 때, 짝지어 제거하기를 성공적으로 수행할 수 있는지 반환하는 함수를 완성해 주세요. 성공적으로 수행할 수 있으면 1을, 아닐 경우 0을 리턴해주면 됩니다.\n",
+        "\n",
+        "예를 들어, 문자열 S = baabaa 라면\n",
+        "\n",
+        "```\n",
+        "b aa baa -> bb aa -> aa ->\n",
+        "```\n",
+        "\n",
+        "의 순서로 문자열을 모두 제거할 수 있으므로 1을 반환합니다.\n",
+        "* 제한사항\n",
+        "  + 문자열의 길이 : 1,000,000이하의 자연수\n",
+        "  + 문자열은 모두 소문자로 이루어져 있습니다.\n",
+        "\n",
+        "\n"
+      ],
+      "metadata": {
+        "id": "WN3QdHJSq2Wu"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "s = 'cdcd'\n",
+        "def solution(s):\n",
+        "    stack = []\n",
+        "    for i in range(len(s)):\n",
+        "        if not stack: stack.append(s[i]) # stack이 비어있다면 push()\n",
+        "        else: \n",
+        "            if s[i] == stack[-1]: stack.pop() # stack 마지막 값과 s[i]가 같다면 pop()\n",
+        "            else: stack.append(s[i]) # stack 마지막 값과 s[i]가 다르면 push()\n",
+        "    if stack: return 0\n",
+        "    else: return 1\n",
+        "solution(s)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "CI2h_9ElsFpm",
+        "outputId": "fb6d4550-3bd8-40da-b033-ef430a93b100"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "0"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 28
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "_Xvvbaz5uXS_"
+      },
+      "execution_count": null,
+      "outputs": []
+    }
+  ]
+}
